@@ -1,9 +1,13 @@
 package com.uz.clinic.repository.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
 import java.sql.Date;
+
 
 @Entity
 public class Visit {
@@ -12,14 +16,16 @@ public class Visit {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int visit_id;
 
-    private int doctor_id;
+    @JsonBackReference
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "doctor_id", nullable = false, insertable = false, updatable = false)
+    private User doctor;
 
     private Date date;
 
-
     @JsonBackReference
-    @ManyToOne()
-    @JoinColumn(name = "user_id", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false, insertable = false, updatable = false)
     private User user;
 
     public Visit() {
@@ -33,13 +39,6 @@ public class Visit {
         this.visit_id = visit_id;
     }
 
-    public int getDoctor_id() {
-        return doctor_id;
-    }
-
-    public void setDoctor_id(int doctor_id) {
-        this.doctor_id = doctor_id;
-    }
 
     public Date getDate() {
         return date;
@@ -55,5 +54,13 @@ public class Visit {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public User getDoctor() {
+        return doctor;
+    }
+
+    public void setDoctor(User doctor) {
+        this.doctor = doctor;
     }
 }

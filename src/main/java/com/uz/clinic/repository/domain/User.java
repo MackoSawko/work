@@ -1,6 +1,6 @@
 package com.uz.clinic.repository.domain;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.*;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -24,16 +24,22 @@ public class User {
     private String phone;
 
     @JsonManagedReference
-    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
-    private Set<Visit> visit;
+    @OneToMany(mappedBy = "doctor", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    private Set<Visit> visitDoctor;
+
+    @JsonManagedReference
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    private Set<Visit> visitPatient;
 
     public User() {
     }
 
+    @JsonGetter
     public int getUser_id() {
         return user_id;
     }
 
+    @JsonSetter
     public void setUser_id(int user_id) {
         this.user_id = user_id;
     }
@@ -118,11 +124,19 @@ public class User {
         this.phone = phone;
     }
 
-    public Set<Visit> getVisit() {
-        return visit;
+    public Set<Visit> getVisitPatient() {
+        return visitPatient;
     }
 
-    public void setVisit(Set<Visit> visit) {
-        this.visit = visit;
+    public void setVisitPatient(Set<Visit> visitPatient) {
+        this.visitPatient = visitPatient;
+    }
+
+    public Set<Visit> getVisitDoctor() {
+        return visitDoctor;
+    }
+
+    public void setVisitDoctor(Set<Visit> visitDoctor) {
+        this.visitDoctor = visitDoctor;
     }
 }
