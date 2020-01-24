@@ -63,4 +63,5 @@ public class Visit {
     public void setDoctor(User doctor) {
         this.doctor = doctor;
     }
+
 }

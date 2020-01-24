@@ -1,6 +1,7 @@
 package com.uz.clinic.controller;
 
 import com.uz.clinic.repository.domain.Visit;
+import com.uz.clinic.repository.domain.VisitDTO;
 import com.uz.clinic.service.VisitService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +21,7 @@ public class VisitController {
     }
 
     @PostMapping
-    public void addVisit(@RequestBody Visit visit){
+    public void addVisit(@RequestBody VisitDTO visit){
         visitService.addVisit(visit);
     }
 

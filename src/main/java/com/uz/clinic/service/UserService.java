@@ -2,6 +2,7 @@ package com.uz.clinic.service;
 
 import com.uz.clinic.repository.UserRepository;
 import com.uz.clinic.repository.domain.User;
+import com.uz.clinic.repository.domain.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,8 +19,18 @@ public class UserService {
         return userRepository.findById(id);
     }
 
-    public void addUser(User user) {
-        userRepository.save(user);
+    public void addUser(UserDTO user) {
+
+        User newUser = new User();
+
+        newUser.setPesel(user.getPesel());
+        newUser.setEmail(user.getEmail());
+        newUser.setPassword(user.getPassword());
+        newUser.setName(user.getName());
+        newUser.setSurname(user.getSurname());
+        newUser.setUserType(user.getUserType());
+
+        userRepository.save(newUser);
     }
 
     public List<User> getAll() {

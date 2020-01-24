@@ -1,6 +1,7 @@
 package com.uz.clinic.controller;
 
 import com.uz.clinic.repository.domain.User;
+import com.uz.clinic.repository.domain.UserDTO;
 import com.uz.clinic.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -27,8 +28,8 @@ public class UserController {
         return userService.getById(id);
     }
 
-    @PostMapping
-    public void addUser(@RequestBody User user){
+    @PostMapping(consumes = "application/json")
+    public void addUser(@RequestBody UserDTO user){
         userService.addUser(user);
     }
 
