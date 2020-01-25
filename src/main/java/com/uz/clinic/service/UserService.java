@@ -40,4 +40,15 @@ public class UserService {
     public void deleteUserById(int id) {
         userRepository.deleteById(id);
     }
+
+    public boolean login(String email, String password){
+
+        User checkingUser = userRepository.findByEmailAndPassword(email, password);
+
+        if(checkingUser.getEmail().equals(email) && checkingUser.getPassword().equals(password)){
+            System.out.println("Istnieje taki uzytkownik");
+            return true;
+        }
+        return false;
+    }
 }

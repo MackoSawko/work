@@ -4,6 +4,7 @@ import com.uz.clinic.repository.domain.User;
 import com.uz.clinic.repository.domain.UserDTO;
 import com.uz.clinic.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -28,7 +29,7 @@ public class UserController {
         return userService.getById(id);
     }
 
-    @PostMapping(consumes = "application/json")
+    @PostMapping("/addUser")
     public void addUser(@RequestBody UserDTO user){
         userService.addUser(user);
     }
@@ -36,6 +37,11 @@ public class UserController {
     @DeleteMapping("/{id}")
     public void deleteUser(@PathVariable int id){
         userService.deleteUserById(id);
+    }
+
+    @PostMapping("/login")
+    public boolean login(@Param("email") String email, @Param("password") String password){
+        return userService.login(email, password);
     }
 
 

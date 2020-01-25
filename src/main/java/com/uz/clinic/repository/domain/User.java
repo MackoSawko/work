@@ -31,6 +31,10 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     private Set<Visit> visitPatient;
 
+    @JsonManagedReference
+    @OneToMany(mappedBy = "doctorSpecialization", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    private Set<Specialization> specialization;
+
     public User() {
     }
 
@@ -138,5 +142,13 @@ public class User {
 
     public void setVisitDoctor(Set<Visit> visitDoctor) {
         this.visitDoctor = visitDoctor;
+    }
+
+    public Set<Specialization> getSpecialization() {
+        return specialization;
+    }
+
+    public void setSpecialization(Set<Specialization> specialization) {
+        this.specialization = specialization;
     }
 }
