@@ -4,28 +4,28 @@ import java.sql.Date;
 
 public class VisitDTO{
 
-    private User doctor;
-    private User user;
+    private int user_id;
+    private int doctor_id;
     private Date date;
 
 
     public VisitDTO() {
     }
 
-    public User getDoctor() {
-        return doctor;
+    public int getUser_id() {
+        return user_id;
     }
 
-    public void setDoctor(User doctor) {
-        this.doctor = doctor;
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
     }
 
-    public User getUser() {
-        return user;
+    public int getDoctor_id() {
+        return doctor_id;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setDoctor_id(int doctor_id) {
+        this.doctor_id = doctor_id;
     }
 
     public Date getDate() {

@@ -26,20 +26,10 @@ public class VisitService {
     public void addVisit(VisitDTO visit) {
 
         Visit newVisit = new Visit();
-        System.out.println(visit.getDate());
-        System.out.println(visit.getDoctor());
-
-        User doctor = visit.getDoctor();
-        User user = visit.getUser();
-
-        System.out.println("jestem tutaj");
-        System.out.println(visit.getDate());
-        System.out.println(doctor);
-        System.out.println(user);
 
         newVisit.setDate(visit.getDate());
-        newVisit.setDoctor(doctor);
-        newVisit.setUser(user);
+        newVisit.setUzytkownikId(visit.getUser_id());
+        newVisit.setDoktorId(visit.getDoctor_id());
 
         visitRepository.save(newVisit);
     }

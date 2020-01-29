@@ -1,6 +1,7 @@
 package com.uz.clinic.controller;
 
 import com.uz.clinic.repository.domain.Specialization;
+import com.uz.clinic.repository.domain.SpecializationDTO;
 import com.uz.clinic.service.SpecializationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -21,7 +22,7 @@ public class SpecializationController {
     }
 
     @PostMapping
-    public void addSpecialization(Specialization specialization){
+    public void addSpecialization(@RequestBody SpecializationDTO specialization){
         specializationService.add(specialization);
     }
 

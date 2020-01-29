@@ -16,6 +16,12 @@ public class Visit {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int visit_id;
 
+    @Column(name = "user_id")
+    int uzytkownikId;
+
+    @Column(name = "doctor_id")
+    int doktorId;
+
     @JsonBackReference
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "doctor_id", nullable = false, insertable = false, updatable = false)
@@ -64,4 +70,19 @@ public class Visit {
         this.doctor = doctor;
     }
 
+    public int getUzytkownikId() {
+        return uzytkownikId;
+    }
+
+    public void setUzytkownikId(int uzytkownikId) {
+        this.uzytkownikId = uzytkownikId;
+    }
+
+    public int getDoktorId() {
+        return doktorId;
+    }
+
+    public void setDoktorId(int doktorId) {
+        this.doktorId = doktorId;
+    }
 }

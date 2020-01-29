@@ -2,6 +2,7 @@ package com.uz.clinic.service;
 
 import com.uz.clinic.repository.SpecializationRepository;
 import com.uz.clinic.repository.domain.Specialization;
+import com.uz.clinic.repository.domain.SpecializationDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +18,10 @@ public class SpecializationService {
         return (List<Specialization>) specializationRepository.findAll();
     }
 
-    public void add(Specialization specialization) {
-        specializationRepository.save(specialization);
+    public void add(SpecializationDTO specialization) {
+        Specialization newSpecialization = new Specialization();
+        newSpecialization.setName(specialization.getName());
+        newSpecialization.setUser_id(specialization.getUser_id());
+        specializationRepository.save(newSpecialization);
     }
 }

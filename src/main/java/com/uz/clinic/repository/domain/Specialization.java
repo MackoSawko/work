@@ -12,10 +12,12 @@ public class Specialization {
     private int specialization_id;
     private String name;
 
+    private int user_id;
+
     @JsonBackReference
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "specialization_id", nullable = false, insertable = false, updatable = false)
-    private User doctorSpecialization;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false, insertable = false, updatable = false)
+    private User specializationDoctor;
 
     public Specialization() {
     }
@@ -36,11 +38,19 @@ public class Specialization {
         this.name = name;
     }
 
-    public User getDoctorSpecialization() {
-        return doctorSpecialization;
+    public int getUser_id() {
+        return user_id;
     }
 
-    public void setDoctorSpecialization(User doctorSpecialization) {
-        this.doctorSpecialization = doctorSpecialization;
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
+    }
+
+    public User getSpecializationDoctor() {
+        return specializationDoctor;
+    }
+
+    public void setSpecializationDoctor(User specializationDoctor) {
+        this.specializationDoctor = specializationDoctor;
     }
 }

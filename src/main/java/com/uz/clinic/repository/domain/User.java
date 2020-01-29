@@ -32,8 +32,16 @@ public class User {
     private Set<Visit> visitPatient;
 
     @JsonManagedReference
-    @OneToMany(mappedBy = "doctorSpecialization", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
-    private Set<Specialization> specialization;
+    @OneToMany(mappedBy = "specializationDoctor", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    private Set<Specialization> specializations;
+
+    @JsonManagedReference
+    @OneToMany(mappedBy = "ratingDoctor", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    private Set<Rating> rateDoctor;
+
+    @JsonManagedReference
+    @OneToMany(mappedBy = "ratingUser", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    private Set<Rating> rateUser;
 
     public User() {
     }
@@ -144,11 +152,27 @@ public class User {
         this.visitDoctor = visitDoctor;
     }
 
-    public Set<Specialization> getSpecialization() {
-        return specialization;
+    public Set<Specialization> getSpecializations() {
+        return specializations;
     }
 
-    public void setSpecialization(Set<Specialization> specialization) {
-        this.specialization = specialization;
+    public void setSpecializations(Set<Specialization> specializations) {
+        this.specializations = specializations;
+    }
+
+    public Set<Rating> getRateDoctor() {
+        return rateDoctor;
+    }
+
+    public void setRateDoctor(Set<Rating> rateDoctor) {
+        this.rateDoctor = rateDoctor;
+    }
+
+    public Set<Rating> getRateUser() {
+        return rateUser;
+    }
+
+    public void setRateUser(Set<Rating> rateUser) {
+        this.rateUser = rateUser;
     }
 }
